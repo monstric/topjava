@@ -20,16 +20,13 @@
     </tr>
 
     <c:forEach items="${requestScope.meals}" var="meal">
-        <c:set var="color" value="green"/>
-        <c:if test="${meal.excess eq true}">
-            <c:set var="color" value="red"/>
-        </c:if>
+        <c:set var="color" value="${meal.excess eq true ? 'red':'green'}"/>
 
-        <tr>
+        <tr bgcolor=${color}>
             <td>${meal.dateTime.format(DateTimeFormatter.ofPattern("dd.MM.yyyy HH:mm"))}</td>
-            <td>${meal.description}</td>
+            <td align="center">${meal.description}</td>
             <td align="right">${meal.calories}</td>
-            <td bgcolor=${color}>${meal.excess}</td>
+            <td>${meal.excess}</td>
         </tr>
     </c:forEach>
 
